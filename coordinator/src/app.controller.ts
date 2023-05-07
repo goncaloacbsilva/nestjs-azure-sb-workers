@@ -2,17 +2,17 @@ import { Controller, Get, Param, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { JobDetails } from './job';
 
-@Controller('api')
+@Controller('api/jobs')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Post('fetch')
-  async fetchProfile() {
-    return await this.appService.fetchProfile();
+  @Post('request')
+  async requestJob() {
+    return await this.appService.requestJob();
   }
 
-  @Get('fetch/:id')
-  async getFetchProgress(@Param('id') id: string): Promise<JobDetails> {
-    return await this.appService.fetchProgress(id);
+  @Get(':id')
+  async fetchJob(@Param('id') id: string): Promise<JobDetails> {
+    return await this.appService.fetchJob(id);
   }
 }

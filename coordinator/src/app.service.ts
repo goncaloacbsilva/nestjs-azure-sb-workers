@@ -11,7 +11,7 @@ export class AppService {
     private jobService: JobService,
   ) {}
 
-  async fetchProfile() {
+  async requestJob() {
     const newJob: Job = {
       id: generate(10),
       data: 'new_request',
@@ -24,7 +24,7 @@ export class AppService {
     };
   }
 
-  async fetchProgress(id: string): Promise<JobDetails> {
+  async fetchJob(id: string): Promise<JobDetails> {
     return this.jobService.getJob(id);
   }
 }
