@@ -91,7 +91,7 @@
     }
 
     async function updateProgress() {
-      const response = await fetch(`http://localhost:8000/api/fetch/${jobId}`);
+      const response = await fetch(`http://localhost:8000/api/jobs/${jobId}`);
       if (response?.ok) {
         const myJson = await response.json();
         if (myJson.completed) {
@@ -120,7 +120,7 @@
     const sendJob = async () => {
       jobInfo.innerHTML = "Requesting job...";
       changeView("status");
-      const response = await fetch("http://localhost:8000/api/fetch", {
+      const response = await fetch("http://localhost:8000/api/jobs/request", {
         method: "POST",
       });
 
