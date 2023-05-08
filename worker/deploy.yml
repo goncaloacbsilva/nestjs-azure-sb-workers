@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-svc
+  labels:
+    app: worker-svc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: worker-svc
+  template:
+    metadata:
+      labels:
+        app: worker-svc
+    spec:
+      containers:
+      - name: worker
+        image: workers-poc/worker
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "1G"
+            cpu: "500m"
+        envFrom:
+        - configMapRef:
+            name: azure-config

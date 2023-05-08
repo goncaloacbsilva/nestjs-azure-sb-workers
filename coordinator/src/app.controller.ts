@@ -1,10 +1,18 @@
 import { Controller, Get, Param, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { JobDetails } from './job';
+import { hostname } from 'os';
 
 @Controller('api/jobs')
 export class AppController {
   constructor(private readonly appService: AppService) {}
+
+  @Get('service')
+  serviceInfo() {
+    return {
+      'coordinator-node': hostname(),
+    };
+  }
 
   @Post('request')
   async requestJob() {

@@ -1,7 +1,3 @@
-# Multi-stage mechanism that allows to build the application in a "builder" 
-# stage and then create a lightweight production image containing the 
-# required dependencies and the JS build files.
-
 # ==== BUILD STAGE ====
 
 FROM node:lts as builder
@@ -17,8 +13,6 @@ RUN yarn install --frozen-lockfile
 
 COPY --chown=node:node . .
 
-RUN yarn build
-
 # ==== PRODUCTION STAGE ====
 
 FROM node:lts-slim
@@ -31,9 +25,10 @@ WORKDIR /home/node
 COPY --from=builder --chown=node:node /home/node/package.json ./
 COPY --from=builder --chown=node:node /home/node/yarn.lock ./
 COPY --from=builder --chown=node:node /home/node/node_modules/ ./node_modules/
-COPY --from=builder --chown=node:node /home/node/dist/ ./dist/
+COPY --from=builder --chown=node:node /home/node/server.js ./server.js
+COPY --from=builder --chown=node:node /home/node/express/ ./express/
 
 # Expose API port
-EXPOSE 8000
+EXPOSE 8080
 
-CMD ["node", "dist/main.js"]
+CMD ["node", "server.js"]

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JobDetails } from './job';
 
 @Injectable()
@@ -14,6 +14,12 @@ export class JobService {
   }
 
   getJob(jobId: string) {
-    return this.inMemoryJobDB.get(jobId);
+    const jobDetails = this.inMemoryJobDB.get(jobId);
+
+    if (!jobDetails) {
+      throw new HttpException('Job not found', HttpStatus.NOT_FOUND);
+    }
+
+    return jobDetails;
   }
 }

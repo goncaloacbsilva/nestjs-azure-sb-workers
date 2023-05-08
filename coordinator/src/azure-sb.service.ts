@@ -6,7 +6,7 @@ import {
 } from '@azure/service-bus';
 import { ConfigService } from '@nestjs/config';
 import { Job } from './job';
-import { JobService } from './Job.service';
+import { JobService } from './job.service';
 
 @Injectable()
 export class AzureSBService implements OnModuleDestroy {

@@ -33,7 +33,6 @@ COPY --from=builder --chown=node:node /home/node/yarn.lock ./
 COPY --from=builder --chown=node:node /home/node/node_modules/ ./node_modules/
 COPY --from=builder --chown=node:node /home/node/dist/ ./dist/
 
-# Expose API port
-EXPOSE 8000
+# No need to expose ports since the communication is made through the Azure SB
 
 CMD ["node", "dist/main.js"]

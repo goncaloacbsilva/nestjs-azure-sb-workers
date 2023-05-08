@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { AzureSBService } from './azure-sb.service';
-import { JobService } from './Job.service';
+import { JobService } from './job.service';
 
 @Module({
   imports: [ConfigModule.forRoot()],

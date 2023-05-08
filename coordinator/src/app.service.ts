@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { AzureSBService } from './azure-sb.service';
 import { generate } from 'randomstring';
 import { Job, JobDetails } from './job';
-import { JobService } from './Job.service';
+import { JobService } from './job.service';
 
 @Injectable()
 export class AppService {
