@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: azure-config
+data:
+  AZURE_SB_CONNECTION_STRING: '<CONNECTION_STRING>'
+  AZURE_SB_JOB_REQUESTS_QUEUE: '<QUEUE_NAME>'
+  AZURE_SB_JOB_UPDATES_QUEUE: '<QUEUE_NAME>'
