@@ -21,7 +21,7 @@ stages:
 - stage: Build
   displayName: Build and push stage
   jobs:
-  - job: coordinator-build
+  - job: coordinator_build
     displayName: Build and deploy coordinator
     pool:
       vmImage: $(vmImageName)
@@ -35,7 +35,7 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-  - job: worker-build
+  - job: worker_build
     displayName: Build and deploy worker
     pool:
       vmImage: $(vmImageName)
@@ -49,7 +49,7 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-  - job: frontend-build
+  - job: frontend_build
     displayName: Build and deploy frontend
     pool:
       vmImage: $(vmImageName)
