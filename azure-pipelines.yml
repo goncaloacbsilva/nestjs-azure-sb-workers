@@ -22,7 +22,7 @@ stages:
   displayName: Build and push stage
   jobs:
   - job: coordinator_build
-    displayName: Build and deploy coordinator
+    displayName: Build and push coordinator image
     pool:
       vmImage: $(vmImageName)
     steps:
@@ -36,7 +36,7 @@ stages:
         tags: |
           $(tag)
   - job: worker_build
-    displayName: Build and deploy worker
+    displayName: Build and push worker image
     pool:
       vmImage: $(vmImageName)
     steps:
@@ -50,7 +50,7 @@ stages:
         tags: |
           $(tag)
   - job: frontend_build
-    displayName: Build and deploy frontend
+    displayName: Build and push frontend image
     pool:
       vmImage: $(vmImageName)
     steps:
