@@ -37,6 +37,8 @@ stages:
           $(tag)
   - job: worker_build
     displayName: Build and push worker image
+    dependsOn: coordinator_build
+    condition: succeeded()
     pool:
       vmImage: $(vmImageName)
     steps:
@@ -51,6 +53,8 @@ stages:
           $(tag)
   - job: frontend_build
     displayName: Build and push frontend image
+    dependsOn: worker_build
+    condition: succeeded()
     pool:
       vmImage: $(vmImageName)
     steps:
